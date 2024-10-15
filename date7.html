@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Ideas for Sarah</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffe6f0;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        h1 {
+            color: #ff4081;
+        }
+        button, input[type="submit"] {
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover, input[type="submit"]:hover {
+            background-color: #ff1493;
+        }
+        .hidden {
+            display: none;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        label {
+            color: #ff69b4;
+            font-size: 18px;
+        }
+        input[type="date"], input[type="time"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 2px solid #ff69b4;
+            margin: 10px;
+        }
+        .pink-background {
+            background-color: #ffe6f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .cute-stickers {
+            position: absolute;
+            bottom: -20px;
+            right: 10px;
+            width: 120px;
+        }
+        .hearts {
+            position: absolute;
+            top: -10px;
+            left: -40px;
+            font-size: 50px;
+            color: #ff4081;
+            transform: rotate(-10deg);
+        }
+        .stars {
+            position: absolute;
+            bottom: 10px;
+            left: -30px;
+            font-size: 30px;
+            color: #ffd700;
+        }
+        .sparkles {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            font-size: 25px;
+            color: #ff69b4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container pink-background">
+    <div id="initialPrompt">
+        <h1>Hey, what's your name?</h1>
+        <form id="nameForm">
+            <input type="text" id="nameInput" placeholder="Enter your name" required>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="greetingMessage" class="hidden">
+        <h1>Jk, I know it's you, the dumbass Sarah!</h1>
+        <p>Now, pick a date idea below:</p>
+        <ul>
+            <li><button onclick="showDateTimeForm('Movie Night 🍿')">Movie Night 🍿</button></li>
+            <li><button onclick="showDateTimeForm('Park Walk 🌳')">Park Walk 🌳</button></li>
+            <li><button onclick="showDateTimeForm('Fancy Dinner 🍽️')">Fancy Dinner 🍽️</button></li>
+            <li><button onclick="showDateTimeForm('Game Night 🎮')">Game Night 🎮</button></li>
+            <li><button onclick="showDateTimeForm('Surprise Adventure 🎉')">Surprise Adventure 🎉</button></li>
+        </ul>
+    </div>
+
+    <div id="dateTimeForm" class="hidden">
+        <h2>When will you be free for our <span id="selectedDateIdea"></span>, honey? 💕</h2>
+        <form id="dateForm">
+            <label for="date">Choose a date:</label><br>
+            <input type="date" id="date" name="date" required><br>
+            <label for="time">Choose a time:</label><br>
+            <input type="time" id="time" name="time" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
+    <div id="confirmationMessage" class="hidden">
+        <h2>Yay! See you on <span id="finalDate"></span> at <span id="finalTime"></span> for our <span id="finalDateIdea"></span>, little sweet princess! 👑💖</h2>
+    </div>
+
+    <div class="hearts">💖💖</div>
+    <div class="stars">⭐✨⭐</div>
+    <div class="sparkles">✨🌟✨</div>
+    <img src="/mnt/data/tren hams.jpeg" class="cute-stickers" alt="trend hamster"> <!-- Updated hamster image -->
+
+</div>
+
+<script>
+    const form = document.getElementById('nameForm');
+    const greetingMessage = document.getElementById('greetingMessage');
+    const dateTimeForm = document.getElementById('dateTimeForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const selectedDateIdea = document.getElementById('selectedDateIdea');
+    const finalDateIdea = document.getElementById('finalDateIdea');
+    const finalDate = document.getElementById('finalDate');
+    const finalTime = document.getElementById('finalTime');
+    const initialPrompt = document.getElementById('initialPrompt');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        greetingMessage.classList.remove('hidden');
+        initialPrompt.classList.add('hidden');
+    });
+
+    function showDateTimeForm(dateIdea) {
+        selectedDateIdea.textContent = dateIdea;
+        finalDateIdea.textContent = dateIdea;
+        dateTimeForm.classList.remove('hidden');
+        greetingMessage.classList.add('hidden');
+    }
+
+    const dateForm = document.getElementById('dateForm');
+    dateForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        finalDate.textContent = date;
+        finalTime.textContent = time;
+        confirmationMessage.classList.remove('hidden');
+        dateTimeForm.classList.add('hidden');
+    });
+</script>
+
+</body>
+</html>
